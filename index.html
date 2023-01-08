@@ -1,10 +1,13 @@
 <html>
 <head>
-    <title>Html-Qrcode Demo</title>
+    <title>QRCode</title>
 <body>
     <div>
-        <div id="qr-reader" style="width:500px"></div>
-        <div id="qr-reader-results"></div>
+        <div style="width: 100%; text-align: center;">
+            <img src="images/iot_logo_2.png" height="100px">
+        </div>
+        <div id="qr-reader"></div>
+        <div id="qr-reader-results" hidden="true"></div>
     </div>
 </body>
 <script src="https://unpkg.com/html5-qrcode"></script>
@@ -28,14 +31,31 @@
                 ++countResults;
                 lastResult = decodedText;
                 console.log(`Scan result ${decodedText}`, decodedResult);
+                resultContainer.hidden=false;
                 resultContainer.innerHTML =decodedText;
-                html5QrcodeScanner.pause(true);
+                html5QrcodeScanner.clear();
+
             }
         }
 
+        function qrboxFunction(viewfinderWidth, viewfinderHeight) {
+            var minEdgePercentage = 0.7; // 70%
+            var minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+            var qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+            return {
+                width: qrboxSize,
+                height: qrboxSize
+            };
+        }
+
         var html5QrcodeScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 250, rememberLastUsedCamera: true, showTorchButtonIfSupported: true });
-        html5QrcodeScanner.render(onScanSuccess);
+            "qr-reader", { fps: 10, qrbox: qrboxFunction , rememberLastUsedCamera: true, showTorchButtonIfSupported: true});
+        html5QrcodeScanner.render(onScanSuccess, true);
+
+        var swap=document.getElementById('html5-qrcode-anchor-scan-type-change');
+        if(typeof(swap) != 'undefined' && swap != null){
+            swap.hidden = true
+        }
 
     });
 </script>
