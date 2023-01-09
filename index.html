@@ -6,7 +6,7 @@
             h1 {
                 font-size: 10vh;
             }
-            #qr-reader-results {width: 98vw; height: 100vh; text-align: center;}
+            #qr-reader-results {font-size: 8vh; text-align: center;}
             #qr-reader {
                 width: 98vw;
                 height: 100vh;
@@ -50,6 +50,7 @@
 
     docReady(function () {
         var resultContainer = document.getElementById('qr-reader-results');
+        var qrReaderContainer = document.getElementById('qr-reader');
         var messageContainer=document.getElementById('message');
         var lastResult, countResults = 0;
         function onScanSuccess(decodedText, decodedResult) {
@@ -58,6 +59,7 @@
                 lastResult = decodedText;
                 console.log(`Scan result ${decodedText}`, decodedResult);
                 messageContainer.hidden=false;
+                qrReaderContainer.hidden=true;
                 resultContainer.innerHTML =decodedText;
                 html5QrcodeScanner.clear();
 
