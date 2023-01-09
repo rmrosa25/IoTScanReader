@@ -4,18 +4,20 @@
     <style>
         @supports (font-size: 10vh) {
             h1 {
-                font-size: 10vh;
+                font-size: 15vh;
+                text-align: center;
             }
-            #qr-reader-results {font-size: 8vh; text-align: center;}
+            #logo {height: 20vh;}
+            #qr-reader-results {font-size: 10vh; text-align: center;}
             #qr-reader {
-                width: 98vw;
-                height: 100vh;
+                height: 75vh;
             }
         }
 
         @supports not (font-size: 10vh) {
             h1 {
                 font-size: 50px;
+                text-align: center;
             }
             #qr-reader-results {font-size: 40px; }
         }
@@ -26,11 +28,11 @@
 <body>
     <div>
         <div style="width: 100%; text-align: center;">
-            <img src="images/iot_logo_2.png" height="100px">
+            <img id="logo" src="images/iot_logo_2.png">
         </div>
         <div id="qr-reader"></div>
         <div id="message" hidden="true">
-            <h1 style="text-align: center;">Message</h1>
+            <h1>Message</h1>
             <div id="qr-reader-results">Your colleagues want to thank Jo&#227;o from the bottom of their heart for his years of service at Vodafone and in IoT. His knowledge and experience were essential to the success of the IoT and the development of many important projects. Jo&#227;o will always be remembered with great affection and gratitude</div>
         </div>
     </div>
