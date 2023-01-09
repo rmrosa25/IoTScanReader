@@ -2,7 +2,19 @@
 <head>
     <title>QRCode</title>
     <style>
-        #message {font-size-adjust: 0.9; }
+        @supports (font-size: 10vh) {
+            h1 {
+                font-size: 10vh;
+            }
+            #qr-reader-results {font-size: 6vh; }
+        }
+
+        @supports not (font-size: 10vh) {
+            h1 {
+                font-size: 50px;
+            }
+            #qr-reader-results {font-size: 40px; }
+        }
         body {
         font-family: Verdana, sans-serif;
         }
