@@ -1,13 +1,22 @@
 <html>
 <head>
     <title>QRCode</title>
+    <style>
+        #message {font-size-adjust: 0.74; }
+        body {
+        font-family: Verdana, sans-serif;
+        }
+       </style>
 <body>
     <div>
         <div style="width: 100%; text-align: center;">
             <img src="images/iot_logo_2.png" height="100px">
         </div>
         <div id="qr-reader"></div>
-        <div id="qr-reader-results" hidden="true"></div>
+        <div id="message" hidden="true">
+            <h1 style="text-align: center;">Message</h1>
+            <div id="qr-reader-results">Your colleagues want to thank Jo&#227;o from the bottom of their heart for his years of service at Vodafone and in IoT. His knowledge and experience were essential to the success of the IoT and the development of many important projects. Jo&#227;o will always be remembered with great affection and gratitude</div>
+        </div>
     </div>
 </body>
 <script src="https://unpkg.com/html5-qrcode"></script>
@@ -25,13 +34,14 @@
 
     docReady(function () {
         var resultContainer = document.getElementById('qr-reader-results');
+        var messageContainer=document.getElementById('message');
         var lastResult, countResults = 0;
         function onScanSuccess(decodedText, decodedResult) {
             if (decodedText !== lastResult) {
                 ++countResults;
                 lastResult = decodedText;
                 console.log(`Scan result ${decodedText}`, decodedResult);
-                resultContainer.hidden=false;
+                messageContainer.hidden=false;
                 resultContainer.innerHTML =decodedText;
                 html5QrcodeScanner.clear();
 
